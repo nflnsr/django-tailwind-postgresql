@@ -80,15 +80,29 @@
 </main>
 
 <div class="mx-auto bg-transparent xl:w-3/5 md:w-4/5 md:px-2 mt-6 text-sm">
-    <div class="flex gap-x-12 justify-center text-left">
-        <div class="flex items-center gap-1">
-            <div class="w-4 h-4 bg-green-300 inline-block"></div><span>important</span>
+    <div class="flex justify-center text-left">
+        <div class="flex items-center gap-1 cursor-default pr-32">
+            <div class="w-4 h-4 bg-green-300 flex items-center group">
+                <div class="flex items-center">
+                    <div class="text-white bg-blue-400 ml-5 z-10 group-hover:block hidden">
+                        <div class="w-6 text-center">hello</div>
+                    </div>
+                </div>
+                <span class="z-0 ml-5 block group-hover:hidden">important</span>
+            </div>
         </div>
-        <div class="flex items-center gap-1">
-            <div class="w-4 h-4 bg-yellow-200 inline-block"></div><span>not too</span>
+        <div class="flex items-center gap-1 cursor-default pr-32">
+            <div class="w-4 h-4 bg-yellow-200 flex items-center group">
+                <div class="flex items-center w-20">
+                    <div class="text-white bg-blue-400 ml-5 z-10 group-hover:block hidden">
+                        <div class="w-6 text-center">hello</div>
+                    </div>
+                </div>
+                <div class="z-0 ml-5 block whitespace-nowrap group-hover:hidden">not too</div>
+            </div>
         </div>
-        <div class="flex items-center gap-1">
-            <div class="w-4 h-4 bg-red-300 inline-block"></div><span>optional</span>
+        <div class="flex items-center gap-1 cursor-default">
+            <div class="w-4 h-4 bg-red-300 inline-block"></div><span>so-so</span>
         </div>
     </div>
 </div>
@@ -143,7 +157,7 @@
 </div>
 
 <footer id="footer">
-    <div id="copyright" class="bottom-2 w-full fixed">
+    <div id="copyright" class="bottom-1 w-full fixed">
         <h6 class="text-center text-sm text-gray-300">Copyright © 2023 Naufal Nasrullah ∙ All Rights Reserved</h6>
     </div>
 </footer>
@@ -170,12 +184,25 @@
     document.getElementById("show-form").addEventListener("click", function () {
         if ((window.innerHeight + window.scrollY) < document.body.offsetHeight) {
             document.getElementById("copyright").className = "static";
-            document.getElementById("copyright").style.marginBottom = "0.3rem";
+            document.getElementById("copyright").style.marginBottom = "0.25rem";
             document.getElementById("copyright").style.marginTop = "3rem";
         } else {
             document.getElementById("copyright").className = "fixed bottom-2 w-full";
         }
     });
+
+    // document.getElementById("green").addEventListener("mouseover", function () {
+    //     console.log("green");
+    //     let important = document.getElementById("info-important");
+    //     let optional = document.getElementById("info-optional");
+    //     if (important.className === "hidden") {
+    //         important.className = "block";
+    //         optional.className = "hidden";
+    //     } else {
+    //         important.className = "hidden";
+    //         optional.className = "block";
+    //     }
+    // });
 </script>
 
 {% endblock %}
