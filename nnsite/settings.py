@@ -43,7 +43,6 @@ INSTALLED_APPS = [
     'tailwind',
     'theme',
     'django_browser_reload',
-    'whitenoise.runserver_nostatic',
 ]
 
 TAILWIND_APP_NAME = 'theme'
@@ -64,7 +63,6 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
     'django_browser_reload.middleware.BrowserReloadMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware', # Here
 ]
 
 ROOT_URLCONF = 'nnsite.urls'
@@ -141,7 +139,7 @@ USE_TZ = True
 
 STATIC_URL = 'theme/static/'
 STATICFILES_DIRS = os.path.join(BASE_DIR, 'static'),
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
+STATIC_ROOT = BASE_DIR / "staticfiles"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
