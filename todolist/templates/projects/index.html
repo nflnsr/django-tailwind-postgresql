@@ -55,15 +55,15 @@
                 </tr>
                 {% else %}
                 <tr>
-                <td class='border bg-yellow-200 border-slate-600'>{{ forloop.counter }}</td>
-                <td class='border bg-yellow-200 sm:px-2 border-slate-600'> {{ list.task }} </td>
-                <td class='border bg-yellow-200 border-slate-600'> {{ list.priority }} </td>
-                <td class='border bg-yellow-200 border-slate-600'> {{ list.date_created }} </td>
-                <td class='border border-slate-600 py-1 sm:px-1 sm:flex'>
-                    <button class='w-2/3 mb-1 sm:mb-0 sm:px-4 sm:mx-1 bg-green-300'><a href=''>edit</a></button>
-                    <button class='w-2/3 sm:px-2 bg-red-300 px-3'><a class='flex justify-center'
-                            href=''>remove</a></button>
-                </td>
+                    <td class='border bg-yellow-200 border-slate-600'>{{ forloop.counter }}</td>
+                    <td class='border bg-yellow-200 sm:px-2 border-slate-600'> {{ list.task }} </td>
+                    <td class='border bg-yellow-200 border-slate-600'> {{ list.priority }} </td>
+                    <td class='border bg-yellow-200 border-slate-600'> {{ list.date_created }} </td>
+                    <td class='border border-slate-600 py-1 sm:px-1 sm:flex'>
+                        <button class='w-2/3 mb-1 sm:mb-0 sm:px-4 sm:mx-1 bg-green-300'><a href=''>edit</a></button>
+                        <button class='w-2/3 sm:px-2 bg-red-300 px-3'><a class='flex justify-center'
+                                href=''>remove</a></button>
+                    </td>
                 </tr>
                 {% endif %}
                 {% empty %}
@@ -81,13 +81,13 @@
 
 <div class="mx-auto bg-transparent xl:w-3/5 md:w-4/5 md:px-2 mt-6 text-sm">
     <div class="flex gap-x-12 justify-center text-left">
-        <div class="w-4 flex items-center gap-1">
+        <div class="flex items-center gap-1">
             <div class="w-4 h-4 bg-green-300 inline-block"></div><span>important</span>
         </div>
-        <div class="w-4 flex items-center gap-1">
-            <div class="w-4 h-4 bg-yellow-200 inline-block"></div><span>not tooo</span>
+        <div class="flex items-center gap-1">
+            <div class="w-4 h-4 bg-yellow-200 inline-block"></div><span>not too</span>
         </div>
-        <div class="w-4 flex items-center gap-1">
+        <div class="flex items-center gap-1">
             <div class="w-4 h-4 bg-red-300 inline-block"></div><span>optional</span>
         </div>
     </div>
