@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'tailwind',
     'theme',
     'django_browser_reload',
+    'whitenoise.runserver_nostatic',
 ]
 
 TAILWIND_APP_NAME = 'theme'
@@ -63,6 +64,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
     'django_browser_reload.middleware.BrowserReloadMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware', # Here
 ]
 
 ROOT_URLCONF = 'nnsite.urls'
