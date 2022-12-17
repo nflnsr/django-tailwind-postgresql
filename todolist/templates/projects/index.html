@@ -80,8 +80,8 @@
 </main>
 
 <div class="mx-auto bg-transparent xl:w-3/5 md:w-4/5 md:px-2 mt-6 text-sm">
-    <div class="flex justify-center text-left">
-        <div class="flex items-center gap-1 cursor-default pr-32">
+    <div class="flex justify-center gap-x-28 lg:gap-x-32">
+        <div class="flex items-center gap-1 cursor-default">
             <div class="w-4 h-4 bg-green-300 flex items-center group">
                 <div class="flex items-center">
                     <div class="text-white bg-blue-400 ml-5 z-10 group-hover:block hidden">
@@ -91,7 +91,7 @@
                 <span class="z-0 ml-5 block group-hover:hidden">important</span>
             </div>
         </div>
-        <div class="flex items-center gap-1 cursor-default pr-32">
+        <div class="flex items-center gap-1 cursor-default">
             <div class="w-4 h-4 bg-yellow-200 flex items-center group">
                 <div class="flex items-center w-20">
                     <div class="text-white bg-blue-400 ml-5 z-10 group-hover:block hidden">
@@ -184,7 +184,7 @@
     document.getElementById("show-form").addEventListener("click", function () {
         if ((window.innerHeight + window.scrollY) < document.body.offsetHeight) {
             document.getElementById("copyright").className = "static";
-            document.getElementById("copyright").style.marginBottom = "0.25rem";
+            document.getElementById("copyright").style.marginBottom = "0.5rem";
             document.getElementById("copyright").style.marginTop = "3rem";
         } else {
             document.getElementById("copyright").className = "fixed bottom-2 w-full";
