@@ -37,7 +37,7 @@
                     <td class='border  border-slate-600 py-1 sm:px-1 sm:flex'>
                         <button class='w-2/3 mb-1 sm:mb-0 sm:px-4 sm:mx-1 bg-green-300'><a href="{% url 'edit' list.id %}">edit</a></button>
                         <button class='w-2/3 sm:px-2 bg-red-300 px-3'><a class='flex justify-center'
-                                href=''>remove</a></button>
+                                href="{% url 'delete' list.id %}">remove</a></button>
                     </td>
                 </tr>
 
@@ -50,7 +50,7 @@
                     <td class='border  border-slate-600 py-1 sm:px-1 sm:flex'>
                         <button class='w-2/3 mb-1 sm:mb-0 sm:px-4 sm:mx-1 bg-green-300'><a href="{% url 'edit' list.id %}">edit</a></button>
                         <button class='w-2/3 sm:px-2 bg-red-300 px-3'><a class='flex justify-center'
-                                href=''>remove</a></button>
+                                href="{% url 'delete' list.id %}">remove</a></button>
                     </td>
                 </tr>
                 {% else %}
