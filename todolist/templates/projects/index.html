@@ -30,7 +30,7 @@
                 {% for list in lists %}
                 {% if list.priority > 7 %}
                 <tr class=''>
-                    <td class='border bg-green-300 border-slate-600'>{{ list.id }}</td>
+                    <td class='border bg-green-300 border-slate-600'>{{ forloop.counter }}</td>
                     <td class='border bg-green-300 sm:px-2 px-1 border-slate-600'> {{ list.task }} </td>
                     <td class='border bg-green-300 border-slate-600'> {{ list.priority }} </td>
                     <td class='border bg-green-300 border-slate-600'> {{ list.date_created }} </td>
