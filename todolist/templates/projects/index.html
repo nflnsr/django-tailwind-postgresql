@@ -30,12 +30,12 @@
                 {% for list in lists %}
                 {% if list.priority > 7 %}
                 <tr class=''>
-                    <td class='border bg-green-300 border-slate-600'>{{ forloop.counter }}</td>
+                    <td class='border bg-green-300 border-slate-600'>{{ list.id }}</td>
                     <td class='border bg-green-300 sm:px-2 px-1 border-slate-600'> {{ list.task }} </td>
                     <td class='border bg-green-300 border-slate-600'> {{ list.priority }} </td>
                     <td class='border bg-green-300 border-slate-600'> {{ list.date_created }} </td>
                     <td class='border  border-slate-600 py-1 sm:px-1 sm:flex'>
-                        <button class='w-2/3 mb-1 sm:mb-0 sm:px-4 sm:mx-1 bg-green-300'><a href=''>edit</a></button>
+                        <button class='w-2/3 mb-1 sm:mb-0 sm:px-4 sm:mx-1 bg-green-300'><a href="{% url 'edit' list.id %}">edit</a></button>
                         <button class='w-2/3 sm:px-2 bg-red-300 px-3'><a class='flex justify-center'
                                 href=''>remove</a></button>
                     </td>
@@ -48,7 +48,7 @@
                     <td class='border bg-red-300 border-slate-600'> {{ list.priority }} </td>
                     <td class='border bg-red-300 border-slate-600'> {{ list.date_created }} </td>
                     <td class='border  border-slate-600 py-1 sm:px-1 sm:flex'>
-                        <button class='w-2/3 mb-1 sm:mb-0 sm:px-4 sm:mx-1 bg-green-300'><a href=''>edit</a></button>
+                        <button class='w-2/3 mb-1 sm:mb-0 sm:px-4 sm:mx-1 bg-green-300'><a href="{% url 'edit' list.id %}">edit</a></button>
                         <button class='w-2/3 sm:px-2 bg-red-300 px-3'><a class='flex justify-center'
                                 href=''>remove</a></button>
                     </td>
@@ -60,9 +60,9 @@
                     <td class='border bg-yellow-200 border-slate-600'> {{ list.priority }} </td>
                     <td class='border bg-yellow-200 border-slate-600'> {{ list.date_created }} </td>
                     <td class='border border-slate-600 py-1 sm:px-1 sm:flex'>
-                        <button class='w-2/3 mb-1 sm:mb-0 sm:px-4 sm:mx-1 bg-green-300'><a href=''>edit</a></button>
+                        <button class='w-2/3 mb-1 sm:mb-0 sm:px-4 sm:mx-1 bg-green-300'><a href="{% url 'edit' list.id %}">edit</a></button>
                         <button class='w-2/3 sm:px-2 bg-red-300 px-3'><a class='flex justify-center'
-                                href=''>remove</a></button>
+                                href="{% url 'delete' list.id %}">remove</a></button>
                     </td>
                 </tr>
                 {% endif %}
@@ -81,7 +81,6 @@
 
 <div class="mx-auto bg-transparent xl:w-3/5 md:w-4/5 md:px-2 mt-6 text-sm">
     <div class="flex lg:justify-center lg:gap-x-24">
-
         <div class="flex items-center justify-center w-5/12 lg:w-fit gap-1 cursor-default">
             <div class="w-4 h-4 bg-green-300 flex items-center group">
                 <div class="flex items-center w-20">
@@ -103,6 +102,7 @@
             </div>
             <div class="z-0">not too</div>
         </div>
+
         <div class="flex items-center justify-center w-5/12 lg:w-fit gap-1 cursor-default">
             <div class="w-4 h-4 bg-red-300 flex items-center group">
                 <div class="flex items-center w-20">
@@ -117,7 +117,8 @@
 </div>
 
 <div class="bg-gray-200 mx-auto border-8 border-green-300 xl:w-3/5 md:w-4/5 md:px-2 mt-8">
-    <form id="form" class="hidden" action="" method="post">
+    <form id="form" class="hidden" action="" method="POST">
+        {% csrf_token %}
         <div class="sm:flex sm:justify-center mb-4 sm:gap-1 sm:px-2 mt-4 lg:mt-8">
             <div class="md:text-center lg:flex lg:items-center sm:w-1/3 sm:block gap-1 lg:gap-0 mb-2">
                 <div class="my-auto flex justify-center lg:justify-start lg:min-w-fit">
@@ -127,7 +128,7 @@
                 <div class="sm:block h-8 flex lg:flex-grow lg:pl-1 justify-center">
                     <input
                         class="w-2/3 focus:border-white focus:border-0 sm:w-full lg:px-1 lg:text-left text-center border-gray-400 rounded-lg border-1 sm:h-8"
-                        type="text" name="task" id="task-form">
+                        type="text" name="task" id="task-form" placeholder="Your task">
                 </div>
             </div>
             <div class="md:text-center lg:flex lg:items-center sm:w-1/3 sm:block gap-1 lg:gap-0 mb-2">
@@ -138,7 +139,7 @@
                 <div class="sm:block h-8 flex lg:flex-grow lg:pl-1 justify-center">
                     <input
                         class="w-1/3 focus:border-white focus:border-0 sm:w-full lg:px-1 lg:text-left text-center border-gray-400 rounded-lg border-1 sm:h-8"
-                        type="text" name="priority" id="priority-form">
+                        type="text" name="priority" id="priority-form" placeholder="1 - 10">
                 </div>
             </div>
             <div class="md:text-center lg:flex lg:items-center sm:w-1/3 sm:block gap-1 lg:gap-0 mb-2">
@@ -154,26 +155,21 @@
             </div>
         </div>
         <div class="text-center mb-6 lg:mb-8">
-            <input type="submit" name="Submit" value="Submit"
+            <input type="submit" name="submit" value="Submit"
                 class="bg-blue-400 hover:bg-blue-300 cursor-pointer px-5 py-2 rounded-lg">
         </div>
     </form>
 </div>
+
 <div id="show-form" class="bg-blue-500 mx-auto border-8 border-blue-300 md:w-4/5 xl:w-3/5 mt-8 rounded-2xl">
     <div onclick="showForm()" class="mx-auto w-full">
         <button class="w-full hover:bg-blue-400 text-white font-bold py-2 px-4 rounded-lg">Add Task</button>
     </div>
 </div>
 
-<footer id="footer">
-    <div id="copyright" class="bottom-1 w-full fixed">
-        <h6 class="text-center text-sm text-gray-300">Copyright © 2023 Naufal Nasrullah ∙ All Rights Reserved</h6>
-    </div>
-</footer>
-
-
 <script type="text/javascript">
     function showForm() {
+        // let task_form = document.getElementById("task-form");
         let x = document.getElementById("form");
         if (x.className === "hidden") {
             x.className = "block";
@@ -181,37 +177,6 @@
             x.className = "hidden";
         }
     }
-
-    window.addEventListener("resize", function () {
-        if (window.matchMedia("(min-height: 500px)").matches) {
-            document.getElementById("footer").style.display = "block";
-        } else {
-            document.getElementById("footer").style.display = "none";
-        }
-    })
-
-    document.getElementById("show-form").addEventListener("click", function () {
-        if ((window.innerHeight + window.scrollY) < document.body.offsetHeight) {
-            document.getElementById("copyright").className = "static";
-            document.getElementById("copyright").style.marginBottom = "0.5rem";
-            document.getElementById("copyright").style.marginTop = "3rem";
-        } else {
-            document.getElementById("copyright").className = "fixed bottom-2 w-full";
-        }
-    });
-
-    // document.getElementById("green").addEventListener("mouseover", function () {
-    //     console.log("green");
-    //     let important = document.getElementById("info-important");
-    //     let optional = document.getElementById("info-optional");
-    //     if (important.className === "hidden") {
-    //         important.className = "block";
-    //         optional.className = "hidden";
-    //     } else {
-    //         important.className = "hidden";
-    //         optional.className = "block";
-    //     }
-    // });
 </script>
 
 {% endblock %}

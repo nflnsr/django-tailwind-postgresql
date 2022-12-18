@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+
+{% block body %}
+<header class="">
+    <div class="bg-blue-300 py-6">
+        <div class="bg-green-300 text-center w-2/3 mx-auto lg:w-1/6 md:ml-28 md:w-1/5 sm:w-2/5">
+            <h1 class="text-3x1 font-bold text-2xl">Naufal Nasrullah ツ</h1>
+        </div>
+    </div>
+</header>
+<div class="bg-gray-200 mx-auto border-8 border-green-300 xl:w-3/5 md:w-4/5 md:px-2 mt-8">
+
+    <form method="POST" action="">
+        {% csrf_token %}
+        <div class="sm:flex sm:justify-center mb-4 sm:gap-1 sm:px-2 mt-4 lg:mt-8">
+            <div class="text-center">
+                <h1 class="text-3x1 font-bold text-2xl">Are you sure want to delete "{{ task }}" task ?</h1>
+            </div>
+        </div>
+        <div class="text-center mb-6 lg:mb-8">
+            <input type="submit" name="submit" value="Delete Task"
+                class="bg-blue-400 hover:bg-blue-300 cursor-pointer px-5 py-2 rounded-lg">
+        </div>
+    </form>
+</div>
+
+
+{% endblock %}

@@ -17,7 +17,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False, unique=True)),
                 ('task', models.CharField(max_length=200)),
-                ('priority', models.IntegerField(blank=True, default=1, null=True)),
+                ('priority', models.IntegerField(default=1)),
                 ('date_created', models.DateField(auto_now_add=True)),
             ],
         ),
