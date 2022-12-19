@@ -32,28 +32,22 @@ class Login(LoginView):
 
 
 def index(request):
-    lists = Todolist.objects.all()
-    context = {}
-
+    user = request.user
+    lists = Todolist.objects.all().filter(user=user.id)
+    
     today = date.today()
     form = TodolistForm()
     if request.method == 'POST':
         form = TodolistForm(request.POST)
+        # submit user id 
+        print('user id: ', user.id)
         if form.is_valid():
             form.save()
             print('form data: ', request.POST)
             return redirect('index')
-
-
-    # @login_required
-    # def display_user_data(request):
-    #     user = request.user
-    #     data = retrieve_user_data(user)
-    #     context = {'form': form }
-    #     return render(request, 'user_data.html', {'data': data})
-    # context['form'] = form
-    context['lists'] = lists
-    context['today'] = today
+    
+    context = {'lists': lists, 'form': form, 'today': today, 'user': user}
+    print(user.id)
     return render(request, '../templates/projects/index.html', context)
 
     # @login_required

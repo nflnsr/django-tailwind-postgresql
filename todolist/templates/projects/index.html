@@ -7,8 +7,16 @@
 {% block body %}
 
 {% if request.user.is_authenticated %}
-    <p>{{ request.user }}</p>
-    <a href="{% url 'logout' %}">Logout</a>
+<div class="">
+    <div>
+        <h2 class="bg-red-200 w-fit h-fit mx-auto"> {{ request.user }} </h2>
+    </div>
+    <div class="w-16 h-8 mx-auto">
+        <a href="{% url 'logout' %}" class="w-16">
+            <div class="bg-blue-400 border-2 mx-auto w-16 h-8 text-center">Logout</div>
+        </a>
+    </div>
+</div>
 
 <header class="">
     <div class="bg-blue-300 py-6">
@@ -160,6 +168,9 @@
                         class="w-2/4 focus:border-white focus:border-0 sm:w-full lg:px-1 lg:text-left text-center border-gray-400 rounded-lg border-1 bg-gray-100 sm:h-8"
                         type="text" name="date_created" id="date-form " value="{{ today }}" disabled>
                 </div>
+            </div>
+            <div class="">
+                <input type="text" name="user" id="user" value="{{ user.id }}">
             </div>
         </div>
         <div class="text-center mb-6 lg:mb-8">
