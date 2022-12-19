@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<h1>Register</h1>
+
+<form action="" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <div class="bg-cyan-400 w-40 h-10 flex justify-center items-center border-4 rounded-md">
+        <input type="submit" class="cursor-pointer" value="Create Account">
+    </div>
+</form>
+
+{% endblock %}

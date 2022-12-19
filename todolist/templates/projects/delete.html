@@ -13,17 +13,17 @@
 
     <form method="POST" action="">
         {% csrf_token %}
-        <div class="sm:flex sm:justify-center mb-4 lg:mb-5 sm:gap-1 sm:px-2 mt-4 lg:mt-8">
+        <div class="sm:flex sm:justify-center mb-4 lg:mb-4 sm:gap-1 sm:px-2 mt-4 lg:mt-8">
             <div class="text-center">
                 <h1 class="text-3x1 font-bold text-2xl">Are you sure want to delete "{{ task }}" task ?</h1>
             </div>
         </div>
-        <div class="text-center mb-2 lg:mb-4">
+        <div class="text-center mb-5 lg:mb-6">
             <input type="submit" name="submit" value="Delete Task"
                 class="bg-red-400 hover:bg-red-300 cursor-pointer px-5 py-2 rounded-lg">
         </div>
-        <div class="text-center mb-6 lg:mb-10">
-            <a type="submit" name="submit" value="Delete Task"
+        <div class="text-center mb-8 lg:mb-10">
+            <a  href="{% url 'index' %}" value="Delete Task"
                 class="bg-blue-400 hover:bg-blue-300 cursor-pointer px-8 py-2 rounded-lg">
                 Go back
             </a>

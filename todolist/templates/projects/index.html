@@ -1,7 +1,14 @@
 {% extends "layout.html" %}
 
 
+
+
+
 {% block body %}
+
+{% if request.user.is_authenticated %}
+    <p>{{ request.user }}</p>
+    <a href="{% url 'logout' %}">Logout</a>
 
 <header class="">
     <div class="bg-blue-300 py-6">
@@ -10,6 +17,7 @@
         </div>
     </div>
 </header>
+
 
 <main class="bg-violet-300 mx-auto border-8 border-red-300 md:w-4/5 xl:w-3/5 mt-8">
     <div class="">
@@ -173,10 +181,18 @@
         let x = document.getElementById("form");
         if (x.className === "hidden") {
             x.className = "block";
-        } else {
+        }else {
             x.className = "hidden";
         }
     }
 </script>
 
+{% else %}
+<script>
+    // cara alternatif kalo abis logout/blom login, redirect ke login
+    window.location.replace("{% url 'login' %}");
+</script>
+
+<a href="{% url 'login' %}">Login</a>
+{% endif %}
 {% endblock %}
