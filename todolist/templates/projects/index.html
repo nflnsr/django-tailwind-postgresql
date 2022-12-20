@@ -9,7 +9,7 @@
 {% if request.user.is_authenticated %}
 <div class="">
     <div>
-        <h2 class="bg-red-200 w-fit h-fit mx-auto"> {{ request.user }} </h2>
+        <h2 class="bg-red-200 w-fit h-fit mx-auto"> Welcome {{ request.user }} </h2>
     </div>
     <div class="w-16 h-8 mx-auto">
         <a href="{% url 'logout' %}" class="w-16">
