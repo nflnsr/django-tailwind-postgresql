@@ -7,11 +7,14 @@
 <form action="" method="POST">
     {% csrf_token %}
     {{ form.as_p }}
-    <div class="bg-cyan-400 w-24 h-10 flex justify-center items-center border-4 rounded-md">
+    <div class="bg-cyan-400 w-24 h-10 flex justify-center items-center border-4 mb-4 rounded-md ">
+    </br>
         <input type="submit" class="cursor-pointer" value="Login">
     </div>
 </form>
-
-<a href="{% url 'register' %}">Create new account</a>
+<div class="w-64 bg-blue-300 h-8 items-center flex border-2 justify-center">
+    <a href="{% url 'register' %}"
+        class="w-64 h-8 px-4 items-center text-center whitespace-nowrap flex justify-center">Create new account</a>
+</div>
 
 {% endblock %}
