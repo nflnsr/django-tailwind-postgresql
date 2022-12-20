@@ -8,7 +8,7 @@ from .forms import TodolistForm
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
-#import superclass
+# import superclass
 
 
 def register(request):
@@ -34,18 +34,18 @@ class Login(LoginView):
 def index(request):
     user = request.user
     lists = Todolist.objects.all().filter(user=user.id)
-    
+
     today = date.today()
     form = TodolistForm()
     if request.method == 'POST':
         form = TodolistForm(request.POST)
-        # submit user id 
+        # submit user id
         print('user id: ', user.id)
         if form.is_valid():
             form.save()
             print('form data: ', request.POST)
             return redirect('index')
-    
+
     context = {'lists': lists, 'form': form, 'today': today, 'user': user}
     print(user.id)
     return render(request, '../templates/projects/index.html', context)
@@ -58,6 +58,8 @@ def index(request):
 
 
 def edit(request, id):
+    user = request.user.id
+    print('user id: ', user)
     todo = Todolist.objects.get(id=id)
     form = TodolistForm(instance=todo)
     priority = form['priority'].value()
