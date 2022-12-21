@@ -34,7 +34,7 @@ class Login(LoginView):
 def index(request):
     user = request.user
     lists = Todolist.objects.all().filter(user=user.id)
-
+    username = str(user)
     today = date.today()
     form = TodolistForm()
     if request.method == 'POST':
@@ -46,7 +46,7 @@ def index(request):
             print('form data: ', request.POST)
             return redirect('index')
 
-    context = {'lists': lists, 'form': form, 'today': today, 'user': user}
+    context = {'lists': lists, 'form': form, 'today': today, 'user': username.capitalize()}
     print(user.id)
     return render(request, '../templates/projects/index.html', context)
 

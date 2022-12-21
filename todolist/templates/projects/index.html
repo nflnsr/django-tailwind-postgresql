@@ -7,32 +7,67 @@
 {% block body %}
 
 {% if request.user.is_authenticated %}
-<div class="">
-    <div>
-        <h2 class="bg-red-200 w-fit h-fit mx-auto"> Welcome {{ request.user }} </h2>
-    </div>
-    <div class="w-16 h-8 mx-auto">
-        <a href="{% url 'logout' %}" class="w-16">
-            <div class="bg-blue-400 border-2 mx-auto w-16 h-8 text-center">Logout</div>
-        </a>
-    </div>
-</div>
 
-<header class="">
-    <div class="bg-blue-300 py-6">
-        <div class="bg-green-300 text-center w-2/3 mx-auto lg:w-1/6 md:ml-28 md:w-1/5 sm:w-2/5">
-            <h1 class="text-3x1 font-bold text-2xl">Naufal Nasrullah ツ</h1>
+<!-- <header class="">
+    <div>
+
+        <div class="bg-blue-300 py-6">
+            <div class="bg-green-300 text-center w-2/3 mx-auto lg:w-1/6 md:ml-28 md:w-1/5 sm:w-2/5">
+                <h1 class="text-3x1 font-bold text-2xl">Naufal Nasrullah ツ</h1>
+            </div>
+            <div class="w-16 h-8 mx-auto">
+                <a href="{% url 'logout' %}" class="w-16">
+                    <div class="bg-blue-400 border-2 mx-auto w-16 h-8 text-center">Logout</div>
+                </a>
+            </div>
+        </div>
+    </div>
+    
+</header> -->
+
+<header class="bg-blue-300">
+    <div class="flex py-6">
+        <div class="sm:w-1/2 w-4/5 flex justify-center">
+            <div class="bg-green-300">
+                <h1 class="text-3x1 font-bold text-2xl shrink whitespace-nowrap px-4">Team 8 - to-do list App</h1>
+            </div>
+        </div>
+        <div class="sm:w-1/2 w-1/5 flex justify-end">
+            <div class="">
+                <a href="{% url 'logout' %}" class="group w-fit flex justify-end mr-4 place-items-center">
+                    <div><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                            stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9" />
+                        </svg>
+                    </div>
+                    <div class="hidden sm:group-hover:block fixed mr-8 text-gray-300">Logout</div>
+                </a>
+            </div>
         </div>
     </div>
 </header>
 
-
-<main class="bg-violet-300 mx-auto border-8 border-red-300 md:w-4/5 xl:w-3/5 mt-8">
-    <div class="">
-        <h1 class="text-2xl text-center">to do list Apps</h1>
+<div class="flex-row mt-4">
+    <div class="mb-2">
+        <h2 class="bg-red-200 w-fit h-fit mx-auto px-3 py-1"> Welcome {{ user }} </h2>
     </div>
+    <div class="flex items-center justify-center mr-24 group w-full">
+        <button class="block" onclick="mode('light')" id="dark">
+            <svg xmlns="http://www.w3.org/2000/svg" width="31" height="31" viewBox="0 0 24 24" style="fill: rgb(225, 225, 225);"><path d="M20.742 13.045a8.088 8.088 0 0 1-2.077.271c-2.135 0-4.14-.83-5.646-2.336a8.025 8.025 0 0 1-2.064-7.723A1 1 0 0 0 9.73 2.034a10.014 10.014 0 0 0-4.489 2.582c-3.898 3.898-3.898 10.243 0 14.143a9.937 9.937 0 0 0 7.072 2.93 9.93 9.93 0 0 0 7.07-2.929 10.007 10.007 0 0 0 2.583-4.491 1.001 1.001 0 0 0-1.224-1.224zm-2.772 4.301a7.947 7.947 0 0 1-5.656 2.343 7.953 7.953 0 0 1-5.658-2.344c-3.118-3.119-3.118-8.195 0-11.314a7.923 7.923 0 0 1 2.06-1.483 10.027 10.027 0 0 0 2.89 7.848 9.972 9.972 0 0 0 7.848 2.891 8.036 8.036 0 0 1-1.484 2.059z"></path></svg>
+        </button>
+        <button class="hidden" onclick="mode('dark')" id="light">
+            <svg xmlns="http://www.w3.org/2000/svg" width="31" height="31" viewBox="0 0 24 24" style="fill: rgb(225, 225, 225);"><path d="M6.993 12c0 2.761 2.246 5.007 5.007 5.007s5.007-2.246 5.007-5.007S14.761 6.993 12 6.993 6.993 9.239 6.993 12zM12 8.993c1.658 0 3.007 1.349 3.007 3.007S13.658 15.007 12 15.007 8.993 13.658 8.993 12 10.342 8.993 12 8.993zM10.998 19h2v3h-2zm0-17h2v3h-2zm-9 9h3v2h-3zm17 0h3v2h-3zM4.219 18.363l2.12-2.122 1.415 1.414-2.12 2.122zM16.24 6.344l2.122-2.122 1.414 1.414-2.122 2.122zM6.342 7.759 4.22 5.637l1.415-1.414 2.12 2.122zm13.434 10.605-1.414 1.414-2.122-2.122 1.414-1.414z"></path></svg>
+        </button>
+        <div class="hidden group-hover:block absolute mt-10 text-gray-300">Change mode</div>
+    </div>
+</div>
+<main class="bg-violet-300 mx-auto border-8 border-red-300 md:w-4/5 xl:w-3/5 mt-5">
     <div class="">
-        <table class="border-collapse text-center p-2 bg-gray-100 border border-slate-500 mx-auto">
+        <h1 class="text-2xl text-center font-mono">Your tasks list</h1>
+    </div>
+    <div class="overflow-auto">
+        <table class="border-collapse text-center p-2 bg-gray-100 border border-slate-500 mx-auto shrink w-10">
             <thead class="">
                 <tr class="">
                     <th class="sm:px-3 px-2 bg-gray-300 border border-slate-600">No</th>
@@ -51,9 +86,16 @@
                     <td class='border bg-green-300 border-slate-600'> {{ list.priority }} </td>
                     <td class='border bg-green-300 border-slate-600'> {{ list.date_created }} </td>
                     <td class='border  border-slate-600 py-1 sm:px-1 sm:flex'>
-                        <button class='w-2/3 mb-1 sm:mb-0 sm:px-4 sm:mx-1 bg-green-300'><a href="{% url 'edit' list.id %}">edit</a></button>
-                        <button class='w-2/3 sm:px-2 bg-red-300 px-3'><a class='flex justify-center'
-                                href="{% url 'delete' list.id %}">remove</a></button>
+                        <button class='w-2/3 mb-1 sm:mb-0 sm:px-2 sm:mx-1 bg-blue-300'><a class="flex justify-center"
+                                href="{% url 'edit' list.id %}"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
+                                  </svg>
+                                  </a></button>
+                        <button class='w-2/3 sm:px-2 bg-red-300'><a class='flex justify-center'
+                                href="{% url 'delete' list.id %}"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
+                                  </svg>
+                                  </a></button>
                     </td>
                 </tr>
 
@@ -64,7 +106,8 @@
                     <td class='border bg-red-300 border-slate-600'> {{ list.priority }} </td>
                     <td class='border bg-red-300 border-slate-600'> {{ list.date_created }} </td>
                     <td class='border  border-slate-600 py-1 sm:px-1 sm:flex'>
-                        <button class='w-2/3 mb-1 sm:mb-0 sm:px-4 sm:mx-1 bg-green-300'><a href="{% url 'edit' list.id %}">edit</a></button>
+                        <button class='w-2/3 mb-1 sm:mb-0 sm:px-4 sm:mx-1 bg-green-300'><a
+                                href="{% url 'edit' list.id %}">edit</a></button>
                         <button class='w-2/3 sm:px-2 bg-red-300 px-3'><a class='flex justify-center'
                                 href="{% url 'delete' list.id %}">remove</a></button>
                     </td>
@@ -76,7 +119,8 @@
                     <td class='border bg-yellow-200 border-slate-600'> {{ list.priority }} </td>
                     <td class='border bg-yellow-200 border-slate-600'> {{ list.date_created }} </td>
                     <td class='border border-slate-600 py-1 sm:px-1 sm:flex'>
-                        <button class='w-2/3 mb-1 sm:mb-0 sm:px-4 sm:mx-1 bg-green-300'><a href="{% url 'edit' list.id %}">edit</a></button>
+                        <button class='w-2/3 mb-1 sm:mb-0 sm:px-4 sm:mx-1 bg-green-300'><a
+                                href="{% url 'edit' list.id %}">edit</a></button>
                         <button class='w-2/3 sm:px-2 bg-red-300 px-3'><a class='flex justify-center'
                                 href="{% url 'delete' list.id %}">remove</a></button>
                     </td>
@@ -116,7 +160,7 @@
                     </div>
                 </div>
             </div>
-            <div class="z-0">not too</div>
+            <div class="z-0 whitespace-nowrap">not too</div>
         </div>
 
         <div class="flex items-center justify-center w-5/12 lg:w-fit gap-1 cursor-default">
@@ -155,7 +199,7 @@
                 <div class="sm:block h-8 flex lg:flex-grow lg:pl-1 justify-center">
                     <input
                         class="w-1/3 focus:border-white focus:border-0 sm:w-full lg:px-1 lg:text-left text-center border-gray-400 rounded-lg border-1 sm:h-8"
-                        type="text" name="priority" id="priority-form" placeholder="1 - 10">
+                        type="text" name="priority" id="priority-form" maxlength="2" placeholder="1 - 10">
                 </div>
             </div>
             <div class="md:text-center lg:flex lg:items-center sm:w-1/3 sm:block gap-1 lg:gap-0 mb-2">
@@ -192,9 +236,23 @@
         let x = document.getElementById("form");
         if (x.className === "hidden") {
             x.className = "block";
-        }else {
+        } else {
             x.className = "hidden";
         }
+    }
+    function mode(mode){
+        if (mode == "light"){
+            document.getElementById("light").className = "block";
+            document.getElementById("dark").className = "hidden";
+            document.querySelector("body").className = "bg-gray-500";
+            document.querySelector("header").className = "bg-gray-400";
+        } else if (mode == "dark"){
+            document.getElementById("light").className = "hidden";
+            document.getElementById("dark").className = "block";
+            document.querySelector("body").className = "bg-gradient-to-r from-cyan-500 via-indigo-400 to-blue-500";
+            document.querySelector("header").className = "bg-blue-300";
+        }
+
     }
 </script>
 

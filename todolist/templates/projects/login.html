@@ -2,19 +2,34 @@
 
 {% block body %}
 
-<h1>Login</h1>
-
-<form action="" method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <div class="bg-cyan-400 w-24 h-10 flex justify-center items-center border-4 mb-4 rounded-md ">
-    </br>
-        <input type="submit" class="cursor-pointer" value="Login">
+<div class="grid h-screen place-items-center pb-20 overflow-auto">
+    <div class="border-8 rounded-lg border-teal-200 border-y-blue-500 bg-white px-6">
+        <div class="text-center pt-2 pb-4">
+            <h1 class="text-blue-700">Login</h1>
+        </div>
+        <div>
+            <form action="" method="POST">
+                {% csrf_token %}
+                <div class="whitespace-pre flex items-center mb-6">
+                    <label for="id_username">Username : </label>
+                    <input class="rounded-md" type="text" name="username" autofocus autocapitalize="none" autocomplete="username"
+                        maxlength="150" required id="id_username">
+                </div>
+                <div class="whitespace-pre flex items-center mb-6">
+                    <label for="id_password">Password  : </label>
+                    <input class="rounded-md" type="password" name="password" autocomplete="current-password" required
+                        maxlength="150" id="id_password">
+                </div>
+                <div class="bg-blue-400">
+                    <input type="submit" class="cursor-pointer w-full py-2" value="Login">
+                </div>
+                <h2 class="text-center mb-2">or</h2>
+            </form>
+        </div>
+        <div class="text-center mb-6">
+            <a href="{% url 'register' %}" class=""><h3 class="w-full py-2 bg-green-300">Create new account</h3></a>
+        </div>
     </div>
-</form>
-<div class="w-64 bg-blue-300 h-8 items-center flex border-2 justify-center">
-    <a href="{% url 'register' %}"
-        class="w-64 h-8 px-4 items-center text-center whitespace-nowrap flex justify-center">Create new account</a>
 </div>
 
 {% endblock %}

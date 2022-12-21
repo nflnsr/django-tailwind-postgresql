@@ -6,11 +6,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link rel="stylesheet" href="/static/hello/style.css?{% now 'U' %}"/> -->
     <title>Todolist Apps</title>
     <link rel="shortcut icon" href="https://i.ibb.co/qB4GbS9/final-logo-blog.png" type="image/x-icon">
-    <!-- <link href="{% static 'css/dist/style.css' %}" rel="stylesheet"> -->
-    <link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/dist/styles.css' %}">
+    <!-- <link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/dist/styles.css' %}"> -->
+    {% tailwind_css %}
 </head>
 <body class="bg-gradient-to-r from-cyan-500 via-indigo-400 to-blue-500">
         {% block body %}
