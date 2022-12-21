@@ -2,14 +2,47 @@
 
 {% block body %}
 
-<h1>Register</h1>
+<div class="h-screen place-items-center overflow-auto pb-20 grid">
+    <div class="border-8 rounded-lg border-teal-200 border-y-blue-500 bg-white px-6 pb-4">
+        <div class="text-center pb-2 mt-2">
+            <h1>Register</h1>
+        </div>
+        <form action="" method="POST">
+            {% csrf_token %}
+            <div class="whitespace-pre justify-center items-center flex mb-4">
+                <label for="id_username">Username : </label>
+                <input class="rounded-md" type="text" name="username" maxlength="150" autocapitalize="none"
+                    autocomplete="username" autofocus required id="id_username">
+            </div>
+            <div class="whitespace-pre justify-center items-center flex mb-2">
+                <label for="id_password1">Password : </label>
+                <input class="rounded-md" type="password" name="password1" autocomplete="new-password" required
+                    id="id_password1">
+            </div>
+            <div class="justify-center flex">
+                <span class="helptext">
+                    <ul>
+                        <li>Your password can’t be too similar to your other personal information.</li>
+                        <li>Your password must contain at least 8 characters.</li>
+                        <li>Your password can’t be a commonly used password.</li>
+                        <li>Your password can’t be entirely numeric.</li>
+                    </ul>
+                </span>
+            </div>
+            <div class="justify-center text-center flex-col flex mb-4">
+                <label for="id_password2">Password confirmation</label>
+                <input class="rounded-md" type="password" name="password2" autocomplete="new-password" required
+                    id="id_password2">
+            </div>
 
-<form action="" method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <div class="bg-cyan-400 w-40 h-10 flex justify-center items-center border-4 rounded-md">
-        <input type="submit" class="cursor-pointer" value="Create Account">
+            <div class="bg-cyan-400 flex justify-center items-center rounded-md mb-2">
+                <input type="submit" class="cursor-pointer h-10" value="Create Account">
+            </div>
+        </form>
+        <div class="bg-red-300 flex justify-center items-center rounded-md">
+            <a href="{% url 'login' %}" class="h-10 flex items-center">Back</a>
+        </div>
     </div>
-</form>
+</div>
 
 {% endblock %}
