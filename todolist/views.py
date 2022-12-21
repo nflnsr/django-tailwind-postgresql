@@ -46,7 +46,7 @@ def index(request):
             print('form data: ', request.POST)
             return redirect('index')
 
-    context = {'lists': lists, 'form': form, 'today': today, 'user': username.capitalize()}
+    context = {'lists': lists, 'form': form, 'today': today, 'user': user, 'username': username.capitalize()}
     print(user.id)
     return render(request, '../templates/projects/index.html', context)
 
