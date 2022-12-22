@@ -1267,14 +1267,19 @@ select {
   letter-spacing: 0em;
 }
 
-.text-gray-300 {
+.text-gray-200 {
   --tw-text-opacity: 1;
-  color: rgb(209 213 219 / var(--tw-text-opacity));
+  color: rgb(229 231 235 / var(--tw-text-opacity));
 }
 
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.text-black {
+  --tw-text-opacity: 1;
+  color: rgb(0 0 0 / var(--tw-text-opacity));
 }
 
 .text-blue-700 {
@@ -1383,11 +1388,6 @@ select {
   .sm\:px-1 {
     padding-left: 0.25rem;
     padding-right: 0.25rem;
-  }
-
-  .sm\:px-4 {
-    padding-left: 1rem;
-    padding-right: 1rem;
   }
 
   .group:hover .sm\:group-hover\:block {
