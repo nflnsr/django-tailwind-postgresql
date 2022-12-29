@@ -64,10 +64,10 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
     'django_browser_reload.middleware.BrowserReloadMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+    # 'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+# STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 ROOT_URLCONF = 'nnsite.urls'
 
@@ -100,9 +100,9 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'railway',
         'USER': 'postgres',
-        'PASSWORD': 'Zjos3dentdquoQunB7Ww',
-        'HOST': 'containers-us-west-179.railway.app',
-        'PORT': '6104',
+        'PASSWORD': 'ne4fOdsAIQC9nGGDUQsn',
+        'HOST': 'containers-us-west-177.railway.app',
+        'PORT': '5495',
     }
 }
 
