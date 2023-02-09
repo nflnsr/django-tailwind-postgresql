@@ -30,16 +30,13 @@ def register(request):
 
 
 class Login(LoginView):
-    try:
-        template_name = '../templates/projects/login.html'
-        fields = '__all__'
-        redirect_authenticated_user = True
+    template_name = '../templates/projects/login.html'
+    fields = '__all__'
+    redirect_authenticated_user = True
 
-        def get_success_url(self):
-            return reverse_lazy('index')
+    def get_success_url(self):
+        return reverse_lazy('index')
 
-    except OperationalError:
-        return HttpResponse('Database is not connected.')
 
 def index(request):
     try:
@@ -57,11 +54,13 @@ def index(request):
                 print('form data: ', request.POST)
                 return redirect('index')
 
-        context = {'lists': lists, 'form': form, 'today': today, 'user': user, 'username': username.capitalize()}
-        print(user.id)
-        return render(request, '../templates/projects/index.html', context)
+
     except OperationalError:
         return HttpResponse('Database is not connected.')
+
+    context = {'lists': lists, 'form': form, 'today': today, 'user': user, 'username': username.capitalize()}
+    print(user.id)
+    return render(request, '../templates/projects/index.html', context)
 
     # @login_required
     # def display_user_data(request):
