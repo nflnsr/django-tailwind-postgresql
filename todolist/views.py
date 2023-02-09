@@ -57,8 +57,8 @@ def index(request):
         context = {'lists': lists, 'form': form, 'today': today, 'user': user, 'username': username.capitalize()}
         print(user.id)
         return render(request, '../templates/projects/index.html', context)
-    except DatabaseError as e:
-        return HttpResponse(e)
+    except:
+        return HttpResponse('Database is not connected.')
     return HttpResponse('Database is not connected.')
 
     # @login_required
