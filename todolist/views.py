@@ -39,30 +39,32 @@ class Login(LoginView):
 
 
 def index(request):
-    user = request.user
-    lists = Todolist.objects.all().filter(user=user.id)
-    username = str(user)
-    today = date.today()
-    form = TodolistForm()
-    if request.method == 'POST':
-        form = TodolistForm(request.POST)
-        # submit user id
-        print('user id: ', user.id)
-        if form.is_valid():
-            form.save()
-            print('form data: ', request.POST)
-            return redirect('index')
+    try:
+        user = request.user
+        lists = Todolist.objects.all().filter(user=user.id)
+        username = str(user)
+        today = date.today()
+        form = TodolistForm()
+        if request.method == 'POST':
+            form = TodolistForm(request.POST)
+            # submit user id
+            print('user id: ', user.id)
+            if form.is_valid():
+                form.save()
+                print('form data: ', request.POST)
+                return redirect('index')
 
-    context = {'lists': lists, 'form': form, 'today': today, 'user': user, 'username': username.capitalize()}
-    print(user.id)
-    return render(request, '../templates/projects/index.html', context)
+        context = {'lists': lists, 'form': form, 'today': today, 'user': user, 'username': username.capitalize()}
+        print(user.id)
+        return render(request, '../templates/projects/index.html', context)
+    except OperationalError:
+        return HttpResponse('Database is not connected.')
 
     # @login_required
     # def display_user_data(request):
     #     user = request.user
     #     data = retrieve_user_data(user)
     #     return render(request, 'user_data.html', {'data': data})
-
 
 def edit(request, id):
     user = request.user.id
