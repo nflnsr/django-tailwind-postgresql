@@ -11,7 +11,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.auth import login, authenticate
 # import superclass
-
+from django.db import transaction, DatabaseError
 
 def register(request):
     form = UserCreationForm()
@@ -59,6 +59,7 @@ def index(request):
         return render(request, '../templates/projects/index.html', context)
     except OperationalError:
         return HttpResponse('Database is not connected.')
+    return HttpResponse('Database is not connected.')
 
     # @login_required
     # def display_user_data(request):
