@@ -30,13 +30,16 @@ def register(request):
 
 
 class Login(LoginView):
-    template_name = '../templates/projects/login.html'
-    fields = '__all__'
-    redirect_authenticated_user = True
+    try:
+        template_name = '../templates/projects/login.html'
+        fields = '__all__'
+        redirect_authenticated_user = True
 
-    def get_success_url(self):
-        return reverse_lazy('index')
+        def get_success_url(self):
+            return reverse_lazy('index')
 
+    except OperationalError:
+        return HttpResponse('Database is not connected.')
 
 def index(request):
     try:
