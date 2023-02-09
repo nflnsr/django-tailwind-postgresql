@@ -39,27 +39,29 @@ class Login(LoginView):
 
 
 def index(request):
-    try:
-        user = request.user
-        lists = Todolist.objects.all().filter(user=user.id)
-        username = str(user)
-        today = date.today()
-        form = TodolistForm()
-        if request.method == 'POST':
-            form = TodolistForm(request.POST)
-            # submit user id
-            print('user id: ', user.id)
-            if form.is_valid():
+    user = request.user
+    lists = Todolist.objects.all().filter(user=user.id)
+    username = str(user)
+    today = date.today()
+    form = TodolistForm()
+    if request.method == 'POST':
+        form = TodolistForm(request.POST)
+        # submit user id
+        print('user id: ', user.id)
+        try: 
+            with transaction.atomic():
+                form.user = user.id
                 form.save()
-                print('form data: ', request.POST)
-                return redirect('index')
+        except DatabaseError as e:
+            print('error: ', e)
+        if form.is_valid():
+            form.save()
+            print('form data: ', request.POST)
+            return redirect('index')
+    context = {'lists': lists, 'form': form, 'today': today, 'user': user, 'username': username.capitalize()}
+    print(user.id)
+    return render(request, '../templates/projects/index.html', context)
 
-        context = {'lists': lists, 'form': form, 'today': today, 'user': user, 'username': username.capitalize()}
-        print(user.id)
-        return render(request, '../templates/projects/index.html', context)
-    except:
-        return HttpResponse('Database is not connected.')
-    return HttpResponse('Database is not connected.')
 
     # @login_required
     # def display_user_data(request):
