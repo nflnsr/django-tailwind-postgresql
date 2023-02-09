@@ -54,13 +54,11 @@ def index(request):
                 print('form data: ', request.POST)
                 return redirect('index')
 
-
+        context = {'lists': lists, 'form': form, 'today': today, 'user': user, 'username': username.capitalize()}
+        print(user.id)
+        return render(request, '../templates/projects/index.html', context)
     except OperationalError:
         return HttpResponse('Database is not connected.')
-
-    context = {'lists': lists, 'form': form, 'today': today, 'user': user, 'username': username.capitalize()}
-    print(user.id)
-    return render(request, '../templates/projects/index.html', context)
 
     # @login_required
     # def display_user_data(request):
