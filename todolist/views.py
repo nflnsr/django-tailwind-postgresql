@@ -11,7 +11,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.auth import login, authenticate
 # import superclass
-from django.db import transaction, DatabaseError
+
 
 def register(request):
     form = UserCreationForm()
@@ -48,26 +48,21 @@ def index(request):
         form = TodolistForm(request.POST)
         # submit user id
         print('user id: ', user.id)
-        try: 
-            with transaction.atomic():
-                form.user = user.id
-                form.save()
-        except DatabaseError as e:
-            print('error: ', e)
         if form.is_valid():
             form.save()
             print('form data: ', request.POST)
             return redirect('index')
+
     context = {'lists': lists, 'form': form, 'today': today, 'user': user, 'username': username.capitalize()}
     print(user.id)
     return render(request, '../templates/projects/index.html', context)
-
 
     # @login_required
     # def display_user_data(request):
     #     user = request.user
     #     data = retrieve_user_data(user)
     #     return render(request, 'user_data.html', {'data': data})
+
 
 def edit(request, id):
     user = request.user.id
