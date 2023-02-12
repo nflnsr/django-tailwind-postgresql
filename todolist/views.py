@@ -1,3 +1,4 @@
+from django.db import OperationalError
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
 from django.urls import reverse_lazy
@@ -34,8 +35,10 @@ class Login(LoginView):
         template_name = '../templates/projects/login.html'
         fields = '__all__'
         redirect_authenticated_user = True
-    except:
+    except OperationalError:
         print('error')
+        def get_success_url(self):
+            return reverse_lazy('Login')
 
     def get_success_url(self):
         return reverse_lazy('index')
