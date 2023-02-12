@@ -31,17 +31,12 @@ def register(request):
 
 
 class Login(LoginView):
-    try:
-        template_name = '../templates/projects/login.html'
-        fields = '__all__'
-        redirect_authenticated_user = True
-        def get_success_url(self):
-            return reverse_lazy('index')
-    except OperationalError:
-        print('error')
-        def get_success_url(self):
-            return reverse_lazy('Login')
-
+    template_name = '../templates/projects/login.html'
+    fields = '__all__'
+    redirect_authenticated_user = True
+    
+    def get_success_url(self):
+        return reverse_lazy('index')
 
 
 
